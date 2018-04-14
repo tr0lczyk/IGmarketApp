@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getName();
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,5 @@ public class MainActivity extends AppCompatActivity {
         MarketRecordFragmentAdapter categoryAdapter = new MarketRecordFragmentAdapter(this,getSupportFragmentManager());
         pager.setAdapter(categoryAdapter);
         tabLayout.setupWithViewPager(pager);
-
-
     }
 }

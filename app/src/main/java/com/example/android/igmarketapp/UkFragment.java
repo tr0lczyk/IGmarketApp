@@ -9,16 +9,12 @@ import android.view.ViewGroup;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UkFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<MarketRecord>> {
 
-
     public UkFragment() {
-        // Required empty public constructor
     }
 
     private static final int MARKETRECORD_LOADER_ID = 1;
@@ -34,18 +30,11 @@ public class UkFragment extends Fragment implements LoaderManager.LoaderCallback
         View rootView = inflater.inflate(R.layout.item_list, container, false);
 
         android.support.v4.app.LoaderManager loaderManager = getLoaderManager();
-
-        // Initialize the loader. Pass in the int ID constant defined above and pass in null for
-        // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-        // because this activity implements the LoaderCallbacks interface).
-
         loaderManager.initLoader(MARKETRECORD_LOADER_ID, null, this);
 
         ListView listView = rootView.findViewById(R.id.list_view);
         newAdapter = new MarketRecordAdapter(getActivity(),new ArrayList<MarketRecord>());
         listView.setAdapter(newAdapter);
-
-
         return rootView;
     }
 

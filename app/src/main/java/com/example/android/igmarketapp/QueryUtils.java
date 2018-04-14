@@ -15,12 +15,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.example.android.igmarketapp.MainActivity.LOG_TAG;
 
-
-public final class QueryUtils {
+public final class QueryUtils{
 
     private static URL createUrl(String stringUrl) {
         URL url = null;
@@ -31,7 +31,6 @@ public final class QueryUtils {
         }
         return url;
     }
-
 
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
@@ -64,9 +63,6 @@ public final class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies than an IOException
-                // could be thrown.
                 inputStream.close();
             }
         }
@@ -92,19 +88,13 @@ public final class QueryUtils {
     }
 
     private static final List<MarketRecord> extractFeatureFromJson(String marketRecordJson) {
-        // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(marketRecordJson)) {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding marketRecords to
         List<MarketRecord> marketRecords = new ArrayList<>();
 
-        // Try to parse the JSON response string. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
-            // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(marketRecordJson);
 
             JSONArray marketRecordArray = baseJsonResponse.getJSONArray("markets");
@@ -130,7 +120,7 @@ public final class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the marketRecord JSON results", e);
         }
 
-        // Return the list of marketRecords
+        Collections.sort(marketRecords);
         return marketRecords;
     }
 
@@ -140,10 +130,8 @@ public final class QueryUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // Create URL object
         URL url = createUrl(requestUrl);
 
-        // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
@@ -151,13 +139,7 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link MarketRecord}s
         List<MarketRecord> marketRecords = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of {@link MarketRecord}s
         return marketRecords;
-    }
-
-    private QueryUtils() {
     }
 }
