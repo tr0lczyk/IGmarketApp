@@ -35,13 +35,13 @@ public class FrFragment extends Fragment implements LoaderManager.LoaderCallback
         android.support.v4.app.LoaderManager loaderManager = getLoaderManager();
         loaderManager.initLoader(MARKETRECORD_LOADER_ID, null, this);
         ListView listView = rootView.findViewById(R.id.list_view);
-        newAdapter = new MarketRecordAdapter(getActivity(),new ArrayList<MarketRecord>());
+        newAdapter = new MarketRecordAdapter(getActivity(), new ArrayList<MarketRecord>());
         listView.setAdapter(newAdapter);
         return rootView;
     }
 
     @Override
-    public Loader<List<MarketRecord>> onCreateLoader(int id,  Bundle args) {
+    public Loader<List<MarketRecord>> onCreateLoader(int id, Bundle args) {
         Log.e(LOG_TAG, "Loader created");
         return new MarketRecordsLoader(getActivity(), FR_URL_LINK);
     }

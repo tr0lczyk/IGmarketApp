@@ -6,4 +6,8 @@
     <string name="uk">UK</string>
     <string name="germany">Germany</string>
     <string name="france">France</string>
+    <string name="company_logo">Company Logo</string>
+    <string name="market_information">Market Information</string>
+    <string name="bid">BID</string>
+    <string name="offer">OFFER</string>
 </resources>

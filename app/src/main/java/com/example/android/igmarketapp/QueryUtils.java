@@ -2,9 +2,11 @@ package com.example.android.igmarketapp;
 
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +22,7 @@ import java.util.List;
 
 import static com.example.android.igmarketapp.MainActivity.LOG_TAG;
 
-public final class QueryUtils{
+public final class QueryUtils {
 
     private static URL createUrl(String stringUrl) {
         URL url = null;
@@ -72,11 +74,11 @@ public final class QueryUtils{
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         try {
-            if(inputStream != null){
+            if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String line = bufferedReader.readLine();
-                while(line != null){
+                while (line != null) {
                     output.append(line);
                     line = bufferedReader.readLine();
                 }
@@ -101,18 +103,12 @@ public final class QueryUtils{
 
             for (int i = 0; i < baseJsonResponse.length(); i++) {
 
-
                 JSONObject currentMarketRecord = marketRecordArray.getJSONObject(i);
-
                 String instrumentName = currentMarketRecord.getString("instrumentName");
-
                 String instrumentBid = currentMarketRecord.getString("displayBid");
-
                 String instrumentOffer = currentMarketRecord.getString("displayOffer");
-
-               MarketRecord newMarketRecord = new MarketRecord(instrumentName,instrumentBid, instrumentOffer);
-
-               marketRecords.add(newMarketRecord);
+                MarketRecord newMarketRecord = new MarketRecord(instrumentName, instrumentBid, instrumentOffer);
+                marketRecords.add(newMarketRecord);
             }
 
 
