@@ -1,7 +1,5 @@
 package com.example.android.igmarketapp;
 
-import android.support.annotation.NonNull;
-
 public class MarketRecord implements Comparable<MarketRecord> {
 
     private String presentedInstrumentName;
@@ -10,10 +8,10 @@ public class MarketRecord implements Comparable<MarketRecord> {
 
     private String presentedOffer;
 
-    public MarketRecord(String newPresentedInstrumentName, String newPresentedBid, String newPresentedOffer){
-        presentedInstrumentName = newPresentedInstrumentName;
-        presentedBid = newPresentedBid;
-        presentedOffer = newPresentedOffer;
+    public MarketRecord(String PresentedInstrumentName, String PresentedBid, String PresentedOffer){
+        this.presentedInstrumentName = PresentedInstrumentName;
+        this.presentedBid = PresentedBid;
+        this.presentedOffer = PresentedOffer;
     }
 
     public String getPresentedBid() {

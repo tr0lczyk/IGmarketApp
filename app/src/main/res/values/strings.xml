@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">IGmarketApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="uk">UK</string>
     <string name="germany">Germany</string>
     <string name="france">France</string>
@@ -10,4 +7,5 @@
     <string name="market_information">Market Information</string>
     <string name="bid">BID</string>
     <string name="offer">OFFER</string>
+    <string name="nothing" />
 </resources>

@@ -2,11 +2,9 @@ package com.example.android.igmarketapp;
 
 import android.text.TextUtils;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,8 +43,8 @@ public final class QueryUtils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -73,23 +71,19 @@ public final class QueryUtils {
 
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
-        try {
-            if (inputStream != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String line = bufferedReader.readLine();
-                while (line != null) {
-                    output.append(line);
-                    line = bufferedReader.readLine();
-                }
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                output.append(line);
+                line = bufferedReader.readLine();
             }
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
         }
         return output.toString();
     }
 
-    private static final List<MarketRecord> extractFeatureFromJson(String marketRecordJson) {
+    private static List<MarketRecord> extractFeatureFromJson(String marketRecordJson) {
         if (TextUtils.isEmpty(marketRecordJson)) {
             return null;
         }
@@ -113,7 +107,7 @@ public final class QueryUtils {
 
 
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the marketRecord JSON results", e);
+            Log.e("QueryUtils", "Error with parsing the marketRecord JSON results occured", e);
         }
 
         Collections.sort(marketRecords);
