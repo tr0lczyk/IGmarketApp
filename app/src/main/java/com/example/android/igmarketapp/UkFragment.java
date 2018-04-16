@@ -13,18 +13,17 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UkFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<MarketRecord>> {
 
-    public UkFragment() {
+    public UkFragment(){
     }
 
     private static final int MARKETRECORD_LOADER_ID = 1;
 
-    public static final String UK_URL_LINK = "https://api.ig.com/deal/samples/markets/ANDROID_PHONE/en_GB/igi";
+    public static String UK_URL_LINK = "https://api.ig.com/deal/samples/markets/ANDROID_PHONE/en_GB/igi";
 
     private MarketRecordAdapter newAdapter;
 

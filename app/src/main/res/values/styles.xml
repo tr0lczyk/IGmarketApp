@@ -13,4 +13,130 @@
         <item name="android:textColor">#A8A19E</item>
     </style>
 
+    <style name="logo_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/default_margin</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:contentDescription">@string/company_logo</item>
+    </style>
+
+    <style name="title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/default_margin</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:textSize">@dimen/main_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tab_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/bloody_red</item>
+    </style>
+
+    <style name="bid_style">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/properties</item>
+        <item name="android:layout_marginStart">@dimen/properties</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:background">@color/bloody_red</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+    </style>
+
+    <style name="offer_style">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/properties</item>
+        <item name="android:layout_marginRight">@dimen/properties</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:background">@color/bloody_red</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+    </style>
+
+    <style name="fragment_style">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">@dimen/match_constraint</item>
+    </style>
+
+    <style name="empty_one_style">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:background">@color/bloody_red</item>
+        <item name="android:textColor">@color/bloody_red</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+    </style>
+
+    <style name="empty_two_style">
+        <item name="android:layout_width">@dimen/match_constraint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:background">@color/bloody_red</item>
+        <item name="android:textColor">@color/bloody_red</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+    </style>
+
+    <style name="main_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="listView_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:drawSelectorOnTop">true</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="listView_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="listItem_layout_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/listPreferredItemHeightLarge</item>
+    </style>
+
+    <style name="instrumentName_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/item_margin</item>
+        <item name="android:layout_marginRight">@dimen/item_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Button</item>
+        <item name="android:textSize">@dimen/item_name</item>
+    </style>
+
+    <style name="listItem_bid_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/properties</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:textColor">@color/json_features</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="listItem_offer_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/properties</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:textColor">@color/json_features</item>
+        <item name="android:textSize">@dimen/properties_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

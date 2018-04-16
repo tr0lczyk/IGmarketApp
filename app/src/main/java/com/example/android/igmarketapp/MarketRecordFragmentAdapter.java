@@ -9,25 +9,36 @@ public class MarketRecordFragmentAdapter extends FragmentPagerAdapter {
 
     private Context pagerContext;
 
+    private int fragmentNumber = 3;
+
     public MarketRecordFragmentAdapter (Context context, FragmentManager fm){
         super(fm);
         pagerContext = context;
     }
 
+    public static int positionCurrent;
+
+    public static int getPositionCurrent(){
+        return positionCurrent;
+    }
+
     @Override
     public Fragment getItem(int position) {
         if (position == 0){
+            positionCurrent = position;
             return new UkFragment();
         } else if (position == 1) {
+            positionCurrent = position;
             return new DeFragment();
         } else {
+            positionCurrent = position;
             return new FrFragment();
         }
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return fragmentNumber;
     }
 
     @Override
@@ -40,4 +51,5 @@ public class MarketRecordFragmentAdapter extends FragmentPagerAdapter {
             return pagerContext.getString(R.string.france);
         }
     }
+
 }

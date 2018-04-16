@@ -36,7 +36,6 @@ public final class QueryUtils {
 
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
-
         if (url == null) {
             return null;
         }
@@ -44,15 +43,11 @@ public final class QueryUtils {
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try {
-
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(readTimeout);
             urlConnection.setConnectTimeout(connectTimeout);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
-
-            // If the request was successful (response code 200),
-            // then read the input stream and parse the response.
             if (urlConnection.getResponseCode() == success) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
@@ -96,9 +91,7 @@ public final class QueryUtils {
         try {
             JSONObject baseJsonResponse = new JSONObject(marketRecordJson);
             JSONArray marketRecordArray = baseJsonResponse.getJSONArray("markets");
-
             for (int i = 0; i < baseJsonResponse.length(); i++) {
-
                 JSONObject currentMarketRecord = marketRecordArray.getJSONObject(i);
                 String instrumentName = currentMarketRecord.getString("instrumentName");
                 String instrumentBid = currentMarketRecord.getString("displayBid");
@@ -106,25 +99,21 @@ public final class QueryUtils {
                 MarketRecord newMarketRecord = new MarketRecord(instrumentName, instrumentBid, instrumentOffer);
                 marketRecords.add(newMarketRecord);
             }
-
         } catch (JSONException e) {
             Log.e("QueryUtils", "Error parsing JSON", e);
         }
-
         Collections.sort(marketRecords);
         return marketRecords;
     }
 
     public static List<MarketRecord> fetchMarketRecordData(String requestUrl) {
         URL url = createUrl(requestUrl);
-
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
             Log.e(LOG, "Error with HTTP request", e);
         }
-
         List<MarketRecord> marketRecords = extractFeatureFromJson(jsonResponse);
         return marketRecords;
     }

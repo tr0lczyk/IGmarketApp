@@ -16,7 +16,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DeFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<MarketRecord>> {
 
     public DeFragment() {
