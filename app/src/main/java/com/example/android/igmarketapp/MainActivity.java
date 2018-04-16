@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String LOG_TAG = MainActivity.class.getName();
+    public static final String LOG = MainActivity.class.getName();
 
 
     @Override

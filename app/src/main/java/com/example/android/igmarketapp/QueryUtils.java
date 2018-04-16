@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,17 +16,20 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static com.example.android.igmarketapp.MainActivity.LOG_TAG;
+import static com.example.android.igmarketapp.MainActivity.LOG;
 
 public final class QueryUtils {
+
+    private static int readTimeout = 10000;
+    private static int connectTimeout = 15000;
+    private static int success = 200;
 
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Problem building the URL", e);
+            Log.e(LOG, "ERROR building URL", e);
         }
         return url;
     }
@@ -42,22 +44,23 @@ public final class QueryUtils {
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try {
+
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(readTimeout);
+            urlConnection.setConnectTimeout(connectTimeout);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == success) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(LOG_TAG, "Error response code " + urlConnection.getResponseCode());
+                Log.e(LOG, "ERROR response code " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the marketRecords JSON results.", e);
+            Log.e(LOG, "ERROR with marketRecords JSON", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -92,7 +95,6 @@ public final class QueryUtils {
 
         try {
             JSONObject baseJsonResponse = new JSONObject(marketRecordJson);
-
             JSONArray marketRecordArray = baseJsonResponse.getJSONArray("markets");
 
             for (int i = 0; i < baseJsonResponse.length(); i++) {
@@ -105,9 +107,8 @@ public final class QueryUtils {
                 marketRecords.add(newMarketRecord);
             }
 
-
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Error with parsing the marketRecord JSON results occured", e);
+            Log.e("QueryUtils", "Error parsing JSON", e);
         }
 
         Collections.sort(marketRecords);
@@ -115,18 +116,13 @@ public final class QueryUtils {
     }
 
     public static List<MarketRecord> fetchMarketRecordData(String requestUrl) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         URL url = createUrl(requestUrl);
 
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+            Log.e(LOG, "Error with HTTP request", e);
         }
 
         List<MarketRecord> marketRecords = extractFeatureFromJson(jsonResponse);

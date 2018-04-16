@@ -8,4 +8,6 @@
     <string name="bid">BID</string>
     <string name="offer">OFFER</string>
     <string name="nothing" />
+    <string name="no_connection">No Internet connection</string>
+    <string name="no_connect">No Internet Connection!</string>
 </resources>
