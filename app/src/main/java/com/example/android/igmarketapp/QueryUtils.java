@@ -22,7 +22,7 @@ public final class QueryUtils {
 
     /*
     * While working on this QueryUtils class, I used the code I got familiar with during the
-    * networking part of Udacity android nanodegree scholarship, I am currently taking part in.
+    * networking part of Udacity android nanodegree scholarship I am currently taking part in.
      * */
 
     private static final int READ_TIMEOUT = 10000;
