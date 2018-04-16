@@ -1,6 +1,7 @@
 package com.example.android.igmarketapp;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,36 +10,36 @@ public class MarketRecordFragmentAdapter extends FragmentPagerAdapter {
 
     private Context pagerContext;
 
-    private int fragmentNumber = 3;
+    private int fragmentCount = 3;
 
     public MarketRecordFragmentAdapter (Context context, FragmentManager fm){
         super(fm);
         pagerContext = context;
     }
 
-    public static int positionCurrent;
-
-    public static int getPositionCurrent(){
-        return positionCurrent;
-    }
-
     @Override
     public Fragment getItem(int position) {
+        Fragment fragment = new LanguageFragment();
         if (position == 0){
-            positionCurrent = position;
-            return new UkFragment();
+            fragment.setArguments(buildBundle(pagerContext.getString(R.string.ukLink), 1));
         } else if (position == 1) {
-            positionCurrent = position;
-            return new DeFragment();
+            fragment.setArguments(buildBundle(pagerContext.getString(R.string.deLink), 2));
         } else {
-            positionCurrent = position;
-            return new FrFragment();
+            fragment.setArguments(buildBundle(pagerContext.getString(R.string.frLink), 3));
         }
+        return fragment;
+    }
+
+    private Bundle buildBundle(String urlLink, int loaderId) {
+        Bundle bundle = new Bundle();
+        bundle.putString("urlLink", urlLink);
+        bundle.putInt("loaderId", loaderId);
+        return bundle;
     }
 
     @Override
     public int getCount() {
-        return fragmentNumber;
+        return fragmentCount;
     }
 
     @Override
@@ -51,5 +52,4 @@ public class MarketRecordFragmentAdapter extends FragmentPagerAdapter {
             return pagerContext.getString(R.string.france);
         }
     }
-
 }

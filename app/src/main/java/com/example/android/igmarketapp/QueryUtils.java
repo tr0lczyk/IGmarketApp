@@ -20,16 +20,16 @@ import static com.example.android.igmarketapp.MainActivity.LOG;
 
 public final class QueryUtils {
 
-    private static int readTimeout = 10000;
-    private static int connectTimeout = 15000;
-    private static int success = 200;
+    private static final int READ_TIMEOUT = 10000;
+    private static final int CONNECT_TIMEOUT = 15000;
+    private static final int SUCCESS_CODE = 200;
 
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(LOG, "ERROR building URL", e);
+            Log.e(LOG, "Malformed url: " + stringUrl, e);
         }
         return url;
     }
@@ -44,11 +44,11 @@ public final class QueryUtils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(readTimeout);
-            urlConnection.setConnectTimeout(connectTimeout);
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(CONNECT_TIMEOUT);
+//            urlConnection.setRequestMethod("GET");
             urlConnection.connect();
-            if (urlConnection.getResponseCode() == success) {
+            if (urlConnection.getResponseCode() == SUCCESS_CODE) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {

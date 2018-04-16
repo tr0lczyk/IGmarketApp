@@ -28,7 +28,6 @@ public class MarketRecord implements Comparable<MarketRecord> {
 
     @Override
     public int compareTo( MarketRecord marketRecord) {
-        int comparedNames = presentedInstrumentName.compareTo(marketRecord.presentedInstrumentName);
-        return comparedNames;
+        return presentedInstrumentName.compareTo(marketRecord.presentedInstrumentName);
     }
 }

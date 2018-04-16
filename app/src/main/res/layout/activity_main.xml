@@ -15,10 +15,11 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/title_style"
+        android:layout_height="28dp"
         android:text="@string/market_information"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        style="@style/title_style" />
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"

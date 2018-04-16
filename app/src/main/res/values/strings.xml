@@ -11,4 +11,7 @@
     <string name="no_connection">No Internet connection</string>
     <string name="no_connect">No Internet Connection!</string>
     <string name="logo_string">Company Logo</string>
+    <string name="ukLink">https://api.ig.com/deal/samples/markets/ANDROID_PHONE/en_GB/igi</string>
+    <string name="deLink">https://api.ig.com/deal/samples/markets/ANDROID_PHONE/de_DE/dem</string>
+    <string name="frLink">https://api.ig.com/deal/samples/markets/ANDROID_PHONE/fr_FR/frm</string>
 </resources>

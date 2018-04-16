@@ -5,28 +5,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class FrFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<MarketRecord>> {
-
-
-    public FrFragment() {
-    }
-
-    private static final int MARKETRECORD_LOADER_ID = 3;
-
-    public static final String FR_URL_LINK = "https://api.ig.com/deal/samples/markets/ANDROID_PHONE/fr_FR/frm";
+public class LanguageFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<MarketRecord>> {
 
     private MarketRecordAdapter newAdapter;
 
@@ -41,10 +31,11 @@ public class FrFragment extends Fragment implements LoaderManager.LoaderCallback
         NetworkInfo networkInfo = connectionPossible.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            android.support.v4.app.LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(MARKETRECORD_LOADER_ID, null, this);
+            LoaderManager loaderManager = getLoaderManager();
+            int loaderId = getArguments().getInt("loaderId");
+            loaderManager.initLoader(loaderId, null, this);
         } else {
-            Toast toast = Toast.makeText(getActivity(), R.string.no_connect,Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getActivity(),R.string.no_connect,Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
@@ -52,8 +43,9 @@ public class FrFragment extends Fragment implements LoaderManager.LoaderCallback
     }
 
     @Override
-    public Loader<List<MarketRecord>> onCreateLoader(int id, Bundle args) {
-        return new MarketRecordsLoader(getActivity(), FR_URL_LINK);
+    public Loader<List<MarketRecord>> onCreateLoader(int id,  Bundle args) {
+        String urlLink = getArguments().getString("urlLink");
+        return new MarketRecordsLoader(getActivity(), urlLink);
     }
 
     @Override
@@ -66,4 +58,5 @@ public class FrFragment extends Fragment implements LoaderManager.LoaderCallback
     public void onLoaderReset(Loader<List<MarketRecord>> loader) {
         newAdapter.clear();
     }
+
 }

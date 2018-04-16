@@ -9,7 +9,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOG = MainActivity.class.getName();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
